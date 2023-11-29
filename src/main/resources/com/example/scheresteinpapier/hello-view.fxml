@@ -26,27 +26,27 @@
    <children>
       <ImageView fx:id="computeraus" fitHeight="150.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <image>
-            <Image url="@../../../../loading.jpg" />
+            <Image url="@../../../loading.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="spieleraus" fitHeight="150.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <image>
-            <Image url="@../../../../loading.jpg" />
+            <Image url="@../../../loading.jpg" />
          </image>
       </ImageView>
       <ImageView fx:id="schere" fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <image>
-            <Image url="@../../../../schere.png" />
+            <Image url="@../../../schere.png" />
          </image>
       </ImageView>
       <ImageView fx:id="stein" fitHeight="150.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <image>
-            <Image url="@../../../../stein.png" />
+            <Image url="@../../../stein.png" />
          </image>
       </ImageView>
       <ImageView fx:id="papier" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <image>
-            <Image url="@../../../../papier.png" />
+            <Image url="@../../../papier.png" />
          </image>
       </ImageView>
       <Label fx:id="computer" alignment="CENTER" prefHeight="150.0" prefWidth="300.0" text="Computer" textAlignment="CENTER">
