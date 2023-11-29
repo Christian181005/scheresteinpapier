@@ -2,6 +2,7 @@ package com.example.scheresteinpapier;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
@@ -12,10 +13,12 @@ public class HelloController {
     public Label gewinner;
     @FXML
     public ImageView schere;
-
     @FXML
     public ImageView stein;
-
+    @FXML
+    public ImageView computeraus;
+    @FXML
+    public ImageView spieleraus;
     @FXML
     public ImageView papier;
 
@@ -23,10 +26,12 @@ public class HelloController {
     private String computerAuswahl;
     private int comuterAuswahlGenerator;
     Random random = new Random();
+    Image imageSchere = new Image(getClass().getResourceAsStream("\"@../../../schere.png\""));
 
     @FXML
     protected void onSchereClicked() {
         eigeneAuswahl = "schere";
+        spieleraus.setImage(imageSchere);
         setComuterAuswahlGenerator();
         selectWinner();
     }
@@ -59,37 +64,35 @@ public class HelloController {
     }
 
     protected void selectWinner() {
-        if (eigeneAuswahl == "schere" && computerAuswahl == "papier"){
+        if (eigeneAuswahl == "schere" && computerAuswahl == "papier") {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
-        } else if (eigeneAuswahl == "schere" && computerAuswahl == "stein"){
+        } else if (eigeneAuswahl == "schere" && computerAuswahl == "stein") {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
-        } else if (eigeneAuswahl == "schere" && computerAuswahl == "schere"){
+        } else if (eigeneAuswahl == "schere" && computerAuswahl == "schere") {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
-        }
-
-        else if (eigeneAuswahl == "stein" && computerAuswahl == "papier"){
+        } else if (eigeneAuswahl == "stein" && computerAuswahl == "papier") {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
-        } else if (eigeneAuswahl == "stein" && computerAuswahl == "stein"){
+        } else if (eigeneAuswahl == "stein" && computerAuswahl == "stein") {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
-        } else if (eigeneAuswahl == "stein" && computerAuswahl == "schere"){
+        } else if (eigeneAuswahl == "stein" && computerAuswahl == "schere") {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
-        }
-
-        else if (eigeneAuswahl == "papier" && computerAuswahl == "papier"){
+        } else if (eigeneAuswahl == "papier" && computerAuswahl == "papier") {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
-        } else if (eigeneAuswahl == "papier" && computerAuswahl == "stein"){
+        } else if (eigeneAuswahl == "papier" && computerAuswahl == "stein") {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
-        } else if (eigeneAuswahl == "papier" && computerAuswahl == "schere"){
+        } else if (eigeneAuswahl == "papier" && computerAuswahl == "schere") {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
         }
     }
+
+
 }
