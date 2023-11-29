@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
 
-<GridPane maxHeight="550.0" maxWidth="900.0" minHeight="550.0" minWidth="900.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.HelloController">
+<GridPane maxHeight="550.0" maxWidth="900.0" minHeight="550.0" minWidth="900.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.HelloController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
@@ -18,37 +24,42 @@
     <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+      <ImageView fx:id="computeraus" fitHeight="150.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <image>
             <Image url="@../../../../loading.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <ImageView fx:id="spieleraus" fitHeight="150.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <image>
             <Image url="@../../../../loading.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="schere" fitHeight="124.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+      <ImageView fx:id="schere" fitHeight="150.0" fitWidth="185.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <image>
             <Image url="@../../../../schere.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="stein" fitHeight="119.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <ImageView fx:id="stein" fitHeight="150.0" fitWidth="287.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <image>
             <Image url="@../../../../stein.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="papier" fitHeight="122.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <ImageView fx:id="papier" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <image>
             <Image url="@../../../../papier.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" prefHeight="150.0" prefWidth="300.0" text="Computer" textAlignment="CENTER">
+      <Label fx:id="computer" alignment="CENTER" prefHeight="150.0" prefWidth="300.0" text="Computer" textAlignment="CENTER">
          <font>
             <Font size="47.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" text="Spieler" GridPane.columnIndex="2">
+      <Label fx:id="spieler" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" text="Spieler" GridPane.columnIndex="2">
+         <font>
+            <Font size="47.0" />
+         </font>
+      </Label>
+      <Label fx:id="gewinner" alignment="CENTER" prefHeight="150.0" prefWidth="300.0" text="/" textAlignment="CENTER" GridPane.columnIndex="1">
          <font>
             <Font size="47.0" />
          </font>
