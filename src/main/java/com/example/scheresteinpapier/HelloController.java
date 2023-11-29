@@ -54,6 +54,8 @@ public class HelloController {
         } else {
             computerAuswahl = "Papier";
         }
+        System.out.println(computerAuswahl);
+        System.out.println(eigeneAuswahl);
     }
 
     protected void selectWinner() {
