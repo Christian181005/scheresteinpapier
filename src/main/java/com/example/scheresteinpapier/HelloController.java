@@ -1,11 +1,20 @@
 package com.example.scheresteinpapier;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.fxml.FXML;
+import javafx.scene.control.ProgressBar;
+import javafx.util.Duration;
+
+import javafx.util.Duration;
 import java.util.Random;
 
 public class HelloController {
@@ -16,24 +25,41 @@ public class HelloController {
     @FXML
     public ImageView stein;
     @FXML
+    public ImageView papier;
+
+    @FXML
+    public ImageView eigeneSchere;
+    @FXML
+    public ImageView eigenerStein;
+    @FXML
+    public ImageView eigenesPapier;
+
+    @FXML
+    public ImageView pcSchere;
+    @FXML
+    public ImageView pcStein;
+    @FXML
+    public ImageView pcPapier;
+
+    @FXML
+    public Button newGame;
+
+    @FXML
     public ImageView computeraus;
     @FXML
     public ImageView spieleraus;
-    @FXML
-    public ImageView papier;
 
     private String eigeneAuswahl;
     private String computerAuswahl;
     private int comuterAuswahlGenerator;
     Random random = new Random();
-    Image imageSchere = new Image(getClass().getResourceAsStream("\"@../../../schere.png\""));
 
     @FXML
     protected void onSchereClicked() {
         eigeneAuswahl = "schere";
-        spieleraus.setImage(imageSchere);
         setComuterAuswahlGenerator();
         selectWinner();
+        setImages();
     }
 
     @FXML
@@ -41,6 +67,7 @@ public class HelloController {
         eigeneAuswahl = "stein";
         setComuterAuswahlGenerator();
         selectWinner();
+        setImages();
     }
 
     @FXML
@@ -48,6 +75,7 @@ public class HelloController {
         eigeneAuswahl = "papier";
         setComuterAuswahlGenerator();
         selectWinner();
+        setImages();
     }
 
     protected void setComuterAuswahlGenerator() {
@@ -55,9 +83,9 @@ public class HelloController {
         if (comuterAuswahlGenerator == 1) {
             computerAuswahl = "schere";
         } else if (comuterAuswahlGenerator == 2) {
-            computerAuswahl = "Stein";
+            computerAuswahl = "stein";
         } else {
-            computerAuswahl = "Papier";
+            computerAuswahl = "papier";
         }
         System.out.println(computerAuswahl);
         System.out.println(eigeneAuswahl);
@@ -91,6 +119,50 @@ public class HelloController {
         } else if (eigeneAuswahl == "papier" && computerAuswahl == "schere") {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
+        }
+    }
+
+    @FXML
+    protected void setNewGame(){
+        eigeneAuswahl="";
+        computerAuswahl="";
+        comuterAuswahlGenerator=0;
+        computeraus.setVisible(true);
+        spieleraus.setVisible(true);
+        papier.setVisible(true);
+        schere.setVisible(true);
+        stein.setVisible(true);
+        pcSchere.setVisible(false);
+        pcStein.setVisible(false);
+        pcPapier.setVisible(false);
+        eigeneSchere.setVisible(false);
+        eigenerStein.setVisible(false);
+        eigenesPapier.setVisible(false);
+        gewinner.setText("/");
+        gewinner.setTextFill(Color.BLACK);
+        System.out.println("########################");
+    }
+
+    protected void setImages() {
+        computeraus.setVisible(false);
+        spieleraus.setVisible(false);
+        papier.setVisible(false);
+        schere.setVisible(false);
+        stein.setVisible(false);
+        if ("schere".equals(eigeneAuswahl)) {
+            eigeneSchere.setVisible(true);
+        } else if ("stein".equals(eigeneAuswahl)) {
+            eigenerStein.setVisible(true);
+        } else {
+            eigenesPapier.setVisible(true);
+        }
+
+        if ("schere".equals(computerAuswahl)) {
+            pcSchere.setVisible(true);
+        } else if ("stein".equals(computerAuswahl)) {
+            pcStein.setVisible(true);
+        } else {
+            pcPapier.setVisible(true);
         }
     }
 
