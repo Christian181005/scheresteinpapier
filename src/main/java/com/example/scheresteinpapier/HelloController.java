@@ -87,8 +87,6 @@ public class HelloController {
         } else {
             computerAuswahl = "papier";
         }
-        System.out.println(computerAuswahl);
-        System.out.println(eigeneAuswahl);
     }
 
     protected void selectWinner() {
@@ -140,7 +138,6 @@ public class HelloController {
         eigenesPapier.setVisible(false);
         gewinner.setText("/");
         gewinner.setTextFill(Color.BLACK);
-        System.out.println("########################");
     }
 
     protected void setImages() {
