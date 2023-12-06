@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import javafx.animation.KeyFrame;
@@ -61,6 +62,8 @@ public class HelloController {
     public ImageView spieleraus;
     @FXML
     public ProgressBar progressBar;
+    @FXML
+    public GridPane grid;
 
     private String eigeneAuswahl;
     private String computerAuswahl;
@@ -207,6 +210,10 @@ newGame.setVisible(true);
         } else {
             pcPapier.setVisible(true);
         }
+    }
+
+  public void gridcolor() {
+
     }
 
 
