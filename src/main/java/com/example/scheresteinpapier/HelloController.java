@@ -208,12 +208,12 @@ newGame.setVisible(true);
 
     @FXML
     public void zoomStein() {
-        zoomImage(stein);
+        zoomStein(stein);
     }
 
     @FXML
     public void zoomOutStein() {
-        resetImageSize(stein);
+        resetSteinSize(stein);
     }
 
     @FXML
@@ -238,6 +238,23 @@ newGame.setVisible(true);
     private void resetImageSize(ImageView imageView) {
         double originHeight = schere.getFitHeight();
         double originWidth = schere.getFitWidth();
+        double aktuelleBreite = originWidth * 0.8333;
+        double aktuelleHoehe = originHeight * 0.8333;
+        imageView.setFitWidth(aktuelleBreite);
+        imageView.setFitHeight(aktuelleHoehe);
+    }
+    private void zoomStein(ImageView imageView) {
+        double originHeight = stein.getFitHeight();
+        double originWidth = stein.getFitWidth();
+        double aktuelleBreite = originWidth * 1.2;
+        double aktuelleHoehe = originHeight * 1.2;
+        imageView.setFitWidth(aktuelleBreite);
+        imageView.setFitHeight(aktuelleHoehe);
+    }
+
+    private void resetSteinSize(ImageView imageView) {
+        double originHeight = stein.getFitHeight();
+        double originWidth = stein.getFitWidth();
         double aktuelleBreite = originWidth * 0.8333;
         double aktuelleHoehe = originHeight * 0.8333;
         imageView.setFitWidth(aktuelleBreite);
