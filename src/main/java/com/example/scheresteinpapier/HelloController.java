@@ -4,26 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.fxml.FXML;
-import javafx.scene.control.ProgressBar;
-import javafx.util.Duration;
-import javafx.application.Application;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 import javafx.util.Duration;
 
 import java.util.Random;
@@ -65,6 +50,7 @@ public class HelloController {
     private String eigeneAuswahl;
     private String computerAuswahl;
     private int comuterAuswahlGenerator;
+
     Random random = new Random();
 
     public void loadProgressbar() {
@@ -205,5 +191,53 @@ public class HelloController {
         }
     }
 
+
+    @FXML
+    public void zoomSchere() {
+        zoomImage(schere);
+    }
+
+    @FXML
+    public void zoomOutSchere() {
+        resetImageSize(schere);
+    }
+
+    @FXML
+    public void zoomStein() {
+        zoomImage(stein);
+    }
+
+    @FXML
+    public void zoomOutStein() {
+        resetImageSize(stein);
+    }
+
+    @FXML
+    public void zoomPapier() {
+        zoomImage(papier);
+    }
+
+    @FXML
+    public void zoomOutPapier() {
+        resetImageSize(papier);
+    }
+
+    private void zoomImage(ImageView imageView) {
+        double originHeight = schere.getFitHeight();
+        double originWidth = schere.getFitWidth();
+        double aktuelleBreite = originWidth * 1.2;
+        double aktuelleHoehe = originHeight * 1.2;
+        imageView.setFitWidth(aktuelleBreite);
+        imageView.setFitHeight(aktuelleHoehe);
+    }
+
+    private void resetImageSize(ImageView imageView) {
+        double originHeight = schere.getFitHeight();
+        double originWidth = schere.getFitWidth();
+        double aktuelleBreite = originWidth * 0.8333;
+        double aktuelleHoehe = originHeight * 0.8333;
+        imageView.setFitWidth(aktuelleBreite);
+        imageView.setFitHeight(aktuelleHoehe);
+    }
 
 }
