@@ -13,8 +13,19 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
 import javafx.util.Duration;
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import javafx.util.Duration;
+
 import java.util.Random;
 
 public class HelloController {
@@ -48,15 +59,44 @@ public class HelloController {
     public ImageView computeraus;
     @FXML
     public ImageView spieleraus;
+    @FXML
+    public ProgressBar progressBar;
 
     private String eigeneAuswahl;
     private String computerAuswahl;
     private int comuterAuswahlGenerator;
     Random random = new Random();
 
+    public void loadProgressbar() {
+        progressBar.setProgress(0);
+        Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.seconds(1), event -> {
+                    progressBar.setProgress(1);
+                })
+        );
+        timeline.setCycleCount(1);
+        int numSteps = 100;
+        Duration frameDuration = Duration.seconds(1).divide(numSteps);
+
+        for (int i = 1; i <= numSteps; i++) {
+            int step = i;
+            timeline.getKeyFrames().add(
+                    new KeyFrame(frameDuration.multiply(i), event -> {
+                        double progress = (double) step / numSteps;
+                        progressBar.setProgress(progress);
+                    })
+            );
+        }
+
+        // Play the timeline
+        timeline.play();
+    }
+
     @FXML
     protected void onSchereClicked() {
         eigeneAuswahl = "schere";
+        loadProgressbar();
         setComuterAuswahlGenerator();
         selectWinner();
         setImages();
@@ -65,6 +105,7 @@ public class HelloController {
     @FXML
     protected void onSteinClicked() {
         eigeneAuswahl = "stein";
+        loadProgressbar();
         setComuterAuswahlGenerator();
         selectWinner();
         setImages();
@@ -73,6 +114,7 @@ public class HelloController {
     @FXML
     protected void onPapierClicked() {
         eigeneAuswahl = "papier";
+        loadProgressbar();
         setComuterAuswahlGenerator();
         selectWinner();
         setImages();
@@ -121,10 +163,10 @@ public class HelloController {
     }
 
     @FXML
-    protected void setNewGame(){
-        eigeneAuswahl="";
-        computerAuswahl="";
-        comuterAuswahlGenerator=0;
+    protected void setNewGame() {
+        eigeneAuswahl = "";
+        computerAuswahl = "";
+        comuterAuswahlGenerator = 0;
         computeraus.setVisible(true);
         spieleraus.setVisible(true);
         papier.setVisible(true);

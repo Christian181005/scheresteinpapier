@@ -93,5 +93,6 @@
             <Image url="@../../../papier.png" />
          </image>
       </ImageView>
+      <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
    </children>
 </GridPane>
