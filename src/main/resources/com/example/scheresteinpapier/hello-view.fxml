@@ -95,5 +95,25 @@
          </image>
       </ImageView>
       <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Label prefHeight="18.0" prefWidth="156.0" text="Highscore:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="highScore" prefHeight="22.0" prefWidth="100.0" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="40.0" prefWidth="199.0" text="Aktuelle PunkteZahl:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="aktuellerScore" prefHeight="22.0" prefWidth="100.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>
