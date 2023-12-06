@@ -54,6 +54,7 @@ public class HelloController {
     Random random = new Random();
 
     public void loadProgressbar() {
+        progressBar.setVisible(true);
         progressBar.setProgress(0);
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(
@@ -77,33 +78,32 @@ public class HelloController {
 
         // Play the timeline
         timeline.play();
+timeline.setOnFinished(event -> {
+        progressBar.setVisible(false);
+        setComuterAuswahlGenerator();
+        selectWinner();
+        setImages();
+
+        });
+
     }
 
     @FXML
     protected void onSchereClicked() {
         eigeneAuswahl = "schere";
         loadProgressbar();
-        setComuterAuswahlGenerator();
-        selectWinner();
-        setImages();
     }
 
     @FXML
     protected void onSteinClicked() {
         eigeneAuswahl = "stein";
         loadProgressbar();
-        setComuterAuswahlGenerator();
-        selectWinner();
-        setImages();
     }
 
     @FXML
     protected void onPapierClicked() {
         eigeneAuswahl = "papier";
         loadProgressbar();
-        setComuterAuswahlGenerator();
-        selectWinner();
-        setImages();
     }
 
     protected void setComuterAuswahlGenerator() {
@@ -146,10 +146,14 @@ public class HelloController {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
         }
+
+newGame.setVisible(true);
+
     }
 
     @FXML
     protected void setNewGame() {
+        newGame.setVisible(false);
         eigeneAuswahl = "";
         computerAuswahl = "";
         comuterAuswahlGenerator = 0;
