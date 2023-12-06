@@ -46,10 +46,15 @@ public class HelloController {
     public ImageView spieleraus;
     @FXML
     public ProgressBar progressBar;
+    @FXML
+    public Label highScore;
+    @FXML
+    public Label aktuellerScore;
 
     private String eigeneAuswahl;
     private String computerAuswahl;
     private int comuterAuswahlGenerator;
+    private int scoreRn;
 
     Random random = new Random();
 
@@ -78,12 +83,12 @@ public class HelloController {
 
         // Play the timeline
         timeline.play();
-timeline.setOnFinished(event -> {
-        progressBar.setVisible(false);
-        setComuterAuswahlGenerator();
-        selectWinner();
-        setImages();
-
+        timeline.setOnFinished(event -> {
+            progressBar.setVisible(false);
+            setComuterAuswahlGenerator();
+            selectWinner();
+            setImages();
+            setHighScore();
         });
 
     }
@@ -121,33 +126,48 @@ timeline.setOnFinished(event -> {
         if (eigeneAuswahl == "schere" && computerAuswahl == "papier") {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
+            scoreRn += 1;
+            aktuellerScore.setText(String.valueOf(scoreRn));
         } else if (eigeneAuswahl == "schere" && computerAuswahl == "stein") {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
+            scoreRn = 0;
+            aktuellerScore.setText(String.valueOf(scoreRn));
         } else if (eigeneAuswahl == "schere" && computerAuswahl == "schere") {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
+            aktuellerScore.setText(String.valueOf(scoreRn));
         } else if (eigeneAuswahl == "stein" && computerAuswahl == "papier") {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
+            scoreRn = 0;
+            aktuellerScore.setText(String.valueOf(scoreRn));
         } else if (eigeneAuswahl == "stein" && computerAuswahl == "stein") {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
+            aktuellerScore.setText(String.valueOf(scoreRn));
         } else if (eigeneAuswahl == "stein" && computerAuswahl == "schere") {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
+            scoreRn += 1;
+            aktuellerScore.setText(String.valueOf(scoreRn));
         } else if (eigeneAuswahl == "papier" && computerAuswahl == "papier") {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
+            aktuellerScore.setText(String.valueOf(scoreRn));
         } else if (eigeneAuswahl == "papier" && computerAuswahl == "stein") {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
+            scoreRn += 1;
+            aktuellerScore.setText(String.valueOf(scoreRn));
         } else if (eigeneAuswahl == "papier" && computerAuswahl == "schere") {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
+            scoreRn = 0;
+            aktuellerScore.setText(String.valueOf(scoreRn));
         }
 
-newGame.setVisible(true);
+        newGame.setVisible(true);
 
     }
 
@@ -229,8 +249,8 @@ newGame.setVisible(true);
     private void zoomImage(ImageView imageView) {
         double originHeight = schere.getFitHeight();
         double originWidth = schere.getFitWidth();
-        double aktuelleBreite = originWidth * 1.2;
-        double aktuelleHoehe = originHeight * 1.2;
+        double aktuelleBreite = originWidth * 1.1;
+        double aktuelleHoehe = originHeight * 1.1;
         imageView.setFitWidth(aktuelleBreite);
         imageView.setFitHeight(aktuelleHoehe);
     }
@@ -238,16 +258,17 @@ newGame.setVisible(true);
     private void resetImageSize(ImageView imageView) {
         double originHeight = schere.getFitHeight();
         double originWidth = schere.getFitWidth();
-        double aktuelleBreite = originWidth * 0.8333;
-        double aktuelleHoehe = originHeight * 0.8333;
+        double aktuelleBreite = originWidth * (1 / 1.1);
+        double aktuelleHoehe = originHeight * (1 / 1.1);
         imageView.setFitWidth(aktuelleBreite);
         imageView.setFitHeight(aktuelleHoehe);
     }
+
     private void zoomStein(ImageView imageView) {
         double originHeight = stein.getFitHeight();
         double originWidth = stein.getFitWidth();
-        double aktuelleBreite = originWidth * 1.2;
-        double aktuelleHoehe = originHeight * 1.2;
+        double aktuelleBreite = originWidth * 1.1;
+        double aktuelleHoehe = originHeight * 1.1;
         imageView.setFitWidth(aktuelleBreite);
         imageView.setFitHeight(aktuelleHoehe);
     }
@@ -255,10 +276,17 @@ newGame.setVisible(true);
     private void resetSteinSize(ImageView imageView) {
         double originHeight = stein.getFitHeight();
         double originWidth = stein.getFitWidth();
-        double aktuelleBreite = originWidth * 0.8333;
-        double aktuelleHoehe = originHeight * 0.8333;
+        double aktuelleBreite = originWidth * (1 / 1.1);
+        double aktuelleHoehe = originHeight * (1 / 1.1);
         imageView.setFitWidth(aktuelleBreite);
         imageView.setFitHeight(aktuelleHoehe);
+    }
+
+    private void setHighScore() {
+        int score = Integer.parseInt(highScore.getText());
+        if (scoreRn > score) {
+            highScore.setText(String.valueOf(scoreRn));
+        }
     }
 
 }
