@@ -1,26 +1,30 @@
+/*-----------------------------------------------------------------------------
+ *              Hoehere Technische Bundeslehranstalt STEYR
+ *           Fachrichtung Elektronik und Technische Informatik
+ *----------------------------------------------------------------------------*/
+
 /**
- *     @Label gewinner ...Label welches Anzeigt ob man gewonnen oder verloren hat
- *     @ImageView schere ...Bild der Schere
- *     @ImageView stein ...Bild des Steins
- *     @ImageView papier ...Bild des Papiers
- *     @ImageView eigeneSchere ...Bild des Objektes welches man ausgewählt hat
- *     @ImageView eigenerStein ...Bild des Objektes welches man ausgewählt hat
- *     @ImageView eigenesPapier ...Bild des Objektes welches man ausgewählt hat
- *     @ImageView pcSchere ...Bild des Objektes welches der Computer generierte
- *     @ImageView pcStein ...Bild des Objektes welches der Computer generierte
- *     @ImageView pcPapier ...Bild des Objektes welches der Computer generierte
- *     @Button newGame ... Beim klicken kann man erneut gegen den Computer spielen
- *     @ImageView computeraus ...Bild des Ladezeichens des Computers
- *     @ImageView spieleraus ...Bild des Ladezeichens von dem Spieler
- *     @ProgressBar progressBar ...welches man sich für ein Objekt entschieden hat lädt diese für 1 Sekunde
- *     @Label highScore ...Zeigt den persönlichen Highscore an
- *     @Label aktuellerScore ...Zeigt die aktuelle Punkteanzeige an
- *
- *     @String eigeneAuswahl ... Das Symbol welches man ausgewählt hat ausgeschrieben
- *     @String computerAuswahl ... Das Symbol welches der Computer ausgewählt hat ausgeschrieben
- *     @int comuterAuswahlGenerator ... Eine Zahl zwischen 1 und 3 wird
- *     @int scoreRn
- *     @Random random
+ * @ImageView schere ...Bild der Schere
+ * @ImageView stein ...Bild des Steins
+ * @ImageView papier ...Bild des Papiers
+ * @ImageView eigeneSchere ...Bild des Objektes welches man ausgewählt hat
+ * @ImageView eigenerStein ...Bild des Objektes welches man ausgewählt hat
+ * @ImageView eigenesPapier ...Bild des Objektes welches man ausgewählt hat
+ * @ImageView pcSchere ...Bild des Objektes welches der Computer generierte
+ * @ImageView pcStein ...Bild des Objektes welches der Computer generierte
+ * @ImageView pcPapier ...Bild des Objektes welches der Computer generierte
+ * @ImageView computeraus ...Bild des Ladezeichens des Computers
+ * @ImageView spieleraus ...Bild des Ladezeichens von dem Spieler
+ * @Button newGame ... Beim klicken, kann man erneut gegen den Computer spielen
+ * @ProgressBar progressBar ...welches man sich für ein Objekt entschieden hat, lädt diese für 1 Sekunde
+ * @Label highScore ...Zeigt den persönlichen Highscore an
+ * @Label aktuellerScore ...Zeigt die aktuelle Punkteanzeige an
+ * @Label gewinner ...Label welches Anzeigt ob man gewonnen oder verloren hat
+ * @String eigeneAuswahl ... Das Symbol welches man ausgewählt hat ausgeschrieben
+ * @String computerAuswahl ... Das Symbol welches der Computer ausgewählt hat ausgeschrieben
+ * @int comuterAuswahlGenerator ... Eine Zahl zwischen 1 und 3 wird
+ * @int scoreRn ... Wie viele Punkte man aktuell hat als int abgespeichert
+ * @Random random ... Generiert die Auswahl des Computers
  */
 
 package com.example.scheresteinpapier;
@@ -79,10 +83,10 @@ public class SchereSteinPapierController {
     @FXML
     public Label aktuellerScore;
 
-    private String eigeneAuswahl;
-    private String computerAuswahl;
-    private int comuterAuswahlGenerator;
-    private int scoreRn;
+    private String eigeneAuswahl = "";
+    private String computerAuswahl = "";
+    private int comuterAuswahlGenerator = 0;
+    private int scoreRn = 0;
 
     Random random = new Random();
 
@@ -96,14 +100,12 @@ public class SchereSteinPapierController {
 
 
     public void loadProgressbar() {
+    public void loadProgressbar() { //Funktion zum Laden der Progressbar in 1 Sekunde
         progressBar.setVisible(true);
         progressBar.setProgress(0);
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(
-                new KeyFrame(Duration.seconds(1), event -> {
-                    progressBar.setProgress(1);
-                })
-        );
+                new KeyFrame(Duration.seconds(1), event -> progressBar.setProgress(1)));
         timeline.setCycleCount(1);
         int numSteps = 100;
         Duration frameDuration = Duration.seconds(1).divide(numSteps);
@@ -118,7 +120,7 @@ public class SchereSteinPapierController {
             );
         }
 
-        // Play the timeline
+        // Play timeline
         timeline.play();
         timeline.setOnFinished(event -> {
             progressBar.setVisible(false);
@@ -148,7 +150,7 @@ public class SchereSteinPapierController {
         loadProgressbar();
     }
 
-    protected void setComuterAuswahlGenerator() {
+    protected void setComuterAuswahlGenerator() { //Zufallszahl zwischen 1 und 3 wird generiert
         comuterAuswahlGenerator = random.nextInt(3) + 1;
         if (comuterAuswahlGenerator == 1) {
             computerAuswahl = "schere";
@@ -159,45 +161,45 @@ public class SchereSteinPapierController {
         }
     }
 
-    protected void selectWinner() {
-        if (eigeneAuswahl == "schere" && computerAuswahl == "papier") {
+    protected void selectWinner() { //Auswertung wer gewonnen hat
+        if (eigeneAuswahl.equals("schere") && computerAuswahl.equals("papier")) {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
             scoreRn += 1;
             aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl == "schere" && computerAuswahl == "stein") {
+        } else if (eigeneAuswahl.equals("schere") && computerAuswahl.equals("stein")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
             scoreRn = 0;
             aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl == "schere" && computerAuswahl == "schere") {
+        } else if (eigeneAuswahl.equals("schere") && computerAuswahl.equals("schere")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
             aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl == "stein" && computerAuswahl == "papier") {
+        } else if (eigeneAuswahl.equals("stein") && computerAuswahl.equals("papier")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
             scoreRn = 0;
             aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl == "stein" && computerAuswahl == "stein") {
+        } else if (eigeneAuswahl.equals("stein") && computerAuswahl.equals("stein")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
             aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl == "stein" && computerAuswahl == "schere") {
+        } else if (eigeneAuswahl.equals("stein") && computerAuswahl.equals("schere")) {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
             scoreRn += 1;
             aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl == "papier" && computerAuswahl == "papier") {
+        } else if (eigeneAuswahl.equals("papier") && computerAuswahl.equals("papier")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
             aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl == "papier" && computerAuswahl == "stein") {
+        } else if (eigeneAuswahl.equals("papier") && computerAuswahl.equals("stein")) {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
             scoreRn += 1;
             aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl == "papier" && computerAuswahl == "schere") {
+        } else if (eigeneAuswahl.equals("papier") && computerAuswahl.equals("schere")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
             scoreRn = 0;
@@ -209,7 +211,7 @@ newGame.setVisible(true);
     }
 
     @FXML
-    protected void setNewGame() {
+    protected void setNewGame() { //Alles wird zurückgesetzt
         newGame.setVisible(false);
         eigeneAuswahl = "";
         computerAuswahl = "";
@@ -229,7 +231,7 @@ newGame.setVisible(true);
         gewinner.setTextFill(Color.BLACK);
     }
 
-    protected void setImages() {
+    protected void setImages() { //Zeigt statt dem Ladesymbol das gewählte Symbol aus
         computeraus.setVisible(false);
         spieleraus.setVisible(false);
         papier.setVisible(false);
@@ -257,6 +259,8 @@ newGame.setVisible(true);
     }
 
 
+    /*Folgende 10 Methoden sorgen dafür dass wenn man über ein Symbol mit der Maus fährt,
+    dass diese größer werden und wieder kleiner wenn, man sie verlässt*/
     @FXML
     public void zoomSchere() {
         zoomImage(schere);
@@ -323,6 +327,7 @@ newGame.setVisible(true);
         imageView.setFitHeight(aktuelleHoehe);
     }
 
+    //Wenn man mehr Punkte als der Highscore hat, wird dieser zur aktuellen Punktezahl
     private void setHighScore() {
         int score = Integer.parseInt(highScore.getText());
         if (scoreRn > score) {

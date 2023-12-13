@@ -5,15 +5,12 @@
 /**
  * Kurzbeschreibung
  *
- * @author  : Christian Domes, Manuel Pichler
- * @date    : $6.12.2023$
- *
- * @details
- *   Schere Stein Papier indem man gegen einen Computer spielt, dieser generiert
- *   eine zufällige auswahl und nach 1 Sekunde sieht man ob man gewonnen oder verloren hat
- *   Zusätzlich gibt es einen Highscore und eine Anzeige die einem zeigt wie viele Punkte
- *   man aktuell hat.
- *
+ * @author : Christian Domes, Manuel Pichler
+ * @date : $6.12.2023$
+ * @details Schere Stein Papier, indem man gegen einen Computer spielt, dieser generiert
+ * eine zufällige auswahl und nach 1 Sekunde sieht man, ob man gewonnen oder verloren hat
+ * Zusätzlich gibt es einen Highscore und eine Anzeige, die einem zeigt, wie viele Punkte
+ * man aktuell hat.
  */
 
 package com.example.scheresteinpapier;
