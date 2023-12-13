@@ -34,11 +34,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.Random;
 
 public class SchereSteinPapierController {
@@ -75,6 +77,8 @@ public class SchereSteinPapierController {
     @FXML
     public ProgressBar progressBar;
     @FXML
+    public GridPane grid;
+    @FXML
     public Label highScore;
     @FXML
     public Label aktuellerScore;
@@ -86,7 +90,17 @@ public class SchereSteinPapierController {
 
     Random random = new Random();
 
-    public void loadProgressbar() { //Funktion zum Laden der Progressbar in 1 Sekunde
+
+
+    String path = "src/main/resources/winsound.mp3";
+    File file = new File(path);
+    javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
+    javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(media);
+
+
+
+    public void loadProgressbar() {
+    //Funktion zum Laden der Progressbar in 1 Sekunde
         progressBar.setVisible(true);
         progressBar.setProgress(0);
         Timeline timeline = new Timeline();
@@ -122,6 +136,8 @@ public class SchereSteinPapierController {
     protected void onSchereClicked() {
         szEigeneAuswahl = "schere";
         loadProgressbar();
+        mediaPlayer.play();
+
     }
 
     @FXML
@@ -192,7 +208,7 @@ public class SchereSteinPapierController {
             aktuellerScore.setText(String.valueOf(nScoreRn));
         }
 
-        newGame.setVisible(true);
+newGame.setVisible(true);
 
     }
 
@@ -239,6 +255,11 @@ public class SchereSteinPapierController {
             pcPapier.setVisible(true);
         }
     }
+
+  public void gridcolor() {
+
+    }
+
 
     /*Folgende 10 Methoden sorgen dafür dass wenn man über ein Symbol mit der Maus fährt,
     dass diese größer werden und wieder kleiner wenn, man sie verlässt*/
