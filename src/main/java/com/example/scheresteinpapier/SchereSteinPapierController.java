@@ -92,6 +92,7 @@ public class SchereSteinPapierController {
 
 
 
+
     String path = "src/main/resources/winsound.mp3";
     File file = new File(path);
     javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
@@ -137,6 +138,7 @@ public class SchereSteinPapierController {
         szEigeneAuswahl = "schere";
         loadProgressbar();
         mediaPlayer.play();
+
 
     }
 

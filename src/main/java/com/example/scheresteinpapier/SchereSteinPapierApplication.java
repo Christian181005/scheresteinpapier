@@ -36,10 +36,11 @@ public class SchereSteinPapierApplication extends Application {
         String path = "src/main/resources/bg_music.mp3";
         File file = new File(path);
         javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
-        javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
+        javafx.scene.media.MediaPlayer mediaPlayerbg = new javafx.scene.media.MediaPlayer(media);
+        mediaPlayerbg.setAutoPlay(true);
+        mediaPlayerbg.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
+        mediaPlayerbg.setVolume(0.30);
+        mediaPlayerbg.play();
 
     }
 
