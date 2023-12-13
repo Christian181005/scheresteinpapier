@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="550.0" maxWidth="900.0" minHeight="550.0" minWidth="900.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.HelloController">
+<GridPane maxHeight="550.0" maxWidth="900.0" minHeight="550.0" minWidth="900.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.SchereSteinPapierController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
