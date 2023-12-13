@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="550.0" maxWidth="900.0" minHeight="550.0" minWidth="900.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.SchereSteinPapierController">
+<GridPane maxHeight="790.0" maxWidth="900.0" minHeight="550.0" minWidth="900.0" prefHeight="704.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.SchereSteinPapierController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
@@ -16,6 +21,7 @@
     <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <ImageView fx:id="computeraus" fitHeight="150.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
@@ -94,25 +100,26 @@
          </image>
       </ImageView>
       <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-      <Label prefHeight="18.0" prefWidth="156.0" text="Highscore:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <Label prefHeight="18.0" prefWidth="156.0" text="Highscore:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Label fx:id="highScore" prefHeight="22.0" prefWidth="100.0" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+      <Label fx:id="highScore" prefHeight="22.0" prefWidth="100.0" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Label prefHeight="40.0" prefWidth="199.0" text="Aktuelle PunkteZahl:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <Label prefHeight="40.0" prefWidth="199.0" text="Aktuelle PunkteZahl:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="aktuellerScore" prefHeight="22.0" prefWidth="100.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+      <Label fx:id="aktuellerScore" prefHeight="22.0" prefWidth="100.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
    </children>
 </GridPane>
