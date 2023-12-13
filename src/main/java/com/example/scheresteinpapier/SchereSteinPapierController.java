@@ -36,6 +36,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.Random;
 
 public class SchereSteinPapierController {
@@ -84,6 +85,15 @@ public class SchereSteinPapierController {
     private int scoreRn;
 
     Random random = new Random();
+
+
+
+    String path = "src/main/resources/bg_music.mp3";
+    File file = new File(path);
+    javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
+    javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(media);
+
+
 
     public void loadProgressbar() {
         progressBar.setVisible(true);
