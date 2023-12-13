@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="550.0" maxWidth="900.0" minHeight="550.0" minWidth="900.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.HelloController">
+<GridPane maxHeight="550.0" maxWidth="900.0" minHeight="550.0" minWidth="900.0" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.SchereSteinPapierController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
@@ -29,17 +28,17 @@
             <Image url="@../../../loading.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="schere" fitHeight="150.0" fitWidth="185.0" onMouseClicked="#onSchereClicked" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <ImageView fx:id="schere" fitHeight="150.0" fitWidth="185.0" onMouseClicked="#onSchereClicked" onMouseEntered="#zoomSchere" onMouseExited="#zoomOutSchere" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <image>
             <Image url="@../../../schere.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="stein" fitHeight="150.0" fitWidth="287.0" onMouseClicked="#onSteinClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <ImageView fx:id="stein" fitHeight="150.0" fitWidth="287.0" onMouseClicked="#onSteinClicked" onMouseEntered="#zoomStein" onMouseExited="#zoomOutStein" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <image>
             <Image url="@../../../stein.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="papier" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#onPapierClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <ImageView fx:id="papier" fitHeight="150.0" fitWidth="150.0" onMouseClicked="#onPapierClicked" onMouseEntered="#zoomPapier" onMouseExited="#zoomOutPapier" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <image>
             <Image url="@../../../papier.png" />
          </image>
@@ -95,5 +94,25 @@
          </image>
       </ImageView>
       <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <Label prefHeight="18.0" prefWidth="156.0" text="Highscore:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="highScore" prefHeight="22.0" prefWidth="100.0" text="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="40.0" prefWidth="199.0" text="Aktuelle PunkteZahl:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="aktuellerScore" prefHeight="22.0" prefWidth="100.0" text="0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>

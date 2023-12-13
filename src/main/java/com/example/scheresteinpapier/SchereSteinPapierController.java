@@ -1,3 +1,28 @@
+/**
+ *     @Label gewinner ...Label welches Anzeigt ob man gewonnen oder verloren hat
+ *     @ImageView schere ...Bild der Schere
+ *     @ImageView stein ...Bild des Steins
+ *     @ImageView papier ...Bild des Papiers
+ *     @ImageView eigeneSchere ...Bild des Objektes welches man ausgewählt hat
+ *     @ImageView eigenerStein ...Bild des Objektes welches man ausgewählt hat
+ *     @ImageView eigenesPapier ...Bild des Objektes welches man ausgewählt hat
+ *     @ImageView pcSchere ...Bild des Objektes welches der Computer generierte
+ *     @ImageView pcStein ...Bild des Objektes welches der Computer generierte
+ *     @ImageView pcPapier ...Bild des Objektes welches der Computer generierte
+ *     @Button newGame ... Beim klicken kann man erneut gegen den Computer spielen
+ *     @ImageView computeraus ...Bild des Ladezeichens des Computers
+ *     @ImageView spieleraus ...Bild des Ladezeichens von dem Spieler
+ *     @ProgressBar progressBar ...welches man sich für ein Objekt entschieden hat lädt diese für 1 Sekunde
+ *     @Label highScore ...Zeigt den persönlichen Highscore an
+ *     @Label aktuellerScore ...Zeigt die aktuelle Punkteanzeige an
+ *
+ *     @String eigeneAuswahl ... Das Symbol welches man ausgewählt hat ausgeschrieben
+ *     @String computerAuswahl ... Das Symbol welches der Computer ausgewählt hat ausgeschrieben
+ *     @int comuterAuswahlGenerator ... Eine Zahl zwischen 1 und 3 wird
+ *     @int scoreRn
+ *     @Random random
+ */
+
 package com.example.scheresteinpapier;
 
 import javafx.fxml.FXML;
@@ -7,14 +32,13 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 import java.util.Random;
 
-public class HelloController {
+public class SchereSteinPapierController {
     @FXML
     public Label gewinner;
     @FXML
