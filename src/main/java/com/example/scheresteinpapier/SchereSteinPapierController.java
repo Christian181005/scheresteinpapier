@@ -20,10 +20,10 @@
  * @Label highScore ...Zeigt den persönlichen Highscore an
  * @Label aktuellerScore ...Zeigt die aktuelle Punkteanzeige an
  * @Label gewinner ...Label welches Anzeigt ob man gewonnen oder verloren hat
- * @String eigeneAuswahl ... Das Symbol welches man ausgewählt hat ausgeschrieben
- * @String computerAuswahl ... Das Symbol welches der Computer ausgewählt hat ausgeschrieben
- * @int comuterAuswahlGenerator ... Eine Zahl zwischen 1 und 3 wird
- * @int scoreRn ... Wie viele Punkte man aktuell hat als int abgespeichert
+ * @String szEigeneAuswahl ... Das Symbol welches man ausgewählt hat ausgeschrieben
+ * @String szComputerAuswahl ... Das Symbol welches der Computer ausgewählt hat ausgeschrieben
+ * @int nComuterAuswahlGenerator ... Eine Zahl zwischen 1 und 3 wird
+ * @int nScoreRn ... Wie viele Punkte man aktuell hat als int abgespeichert
  * @Random random ... Generiert die Auswahl des Computers
  */
 
@@ -83,16 +83,16 @@ public class SchereSteinPapierController {
     @FXML
     public Label aktuellerScore;
 
-    private String eigeneAuswahl = "";
-    private String computerAuswahl = "";
-    private int comuterAuswahlGenerator = 0;
-    private int scoreRn = 0;
+    private String szEigeneAuswahl = "";
+    private String szComputerAuswahl = "";
+    private int nComuterAuswahlGenerator = 0;
+    private int nScoreRn = 0;
 
     Random random = new Random();
 
 
 
-    String path = "src/main/resources/bg_music.mp3";
+    String path = "src/main/resources/winsound.mp3";
     File file = new File(path);
     javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
     javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(media);
@@ -134,76 +134,78 @@ public class SchereSteinPapierController {
 
     @FXML
     protected void onSchereClicked() {
-        eigeneAuswahl = "schere";
+        szEigeneAuswahl = "schere";
         loadProgressbar();
+        mediaPlayer.play();
+
     }
 
     @FXML
     protected void onSteinClicked() {
-        eigeneAuswahl = "stein";
+        szEigeneAuswahl = "stein";
         loadProgressbar();
     }
 
     @FXML
     protected void onPapierClicked() {
-        eigeneAuswahl = "papier";
+        szEigeneAuswahl = "papier";
         loadProgressbar();
     }
 
     protected void setComuterAuswahlGenerator() { //Zufallszahl zwischen 1 und 3 wird generiert
-        comuterAuswahlGenerator = random.nextInt(3) + 1;
-        if (comuterAuswahlGenerator == 1) {
-            computerAuswahl = "schere";
-        } else if (comuterAuswahlGenerator == 2) {
-            computerAuswahl = "stein";
+        nComuterAuswahlGenerator = random.nextInt(3) + 1;
+        if (nComuterAuswahlGenerator == 1) {
+            szComputerAuswahl = "schere";
+        } else if (nComuterAuswahlGenerator == 2) {
+            szComputerAuswahl = "stein";
         } else {
-            computerAuswahl = "papier";
+            szComputerAuswahl = "papier";
         }
     }
 
     protected void selectWinner() { //Auswertung wer gewonnen hat
-        if (eigeneAuswahl.equals("schere") && computerAuswahl.equals("papier")) {
+        if (szEigeneAuswahl.equals("schere") && szComputerAuswahl.equals("papier")) {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
-            scoreRn += 1;
-            aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl.equals("schere") && computerAuswahl.equals("stein")) {
+            nScoreRn += 1;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+        } else if (szEigeneAuswahl.equals("schere") && szComputerAuswahl.equals("stein")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
-            scoreRn = 0;
-            aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl.equals("schere") && computerAuswahl.equals("schere")) {
+            nScoreRn = 0;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+        } else if (szEigeneAuswahl.equals("schere") && szComputerAuswahl.equals("schere")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
-            aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl.equals("stein") && computerAuswahl.equals("papier")) {
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+        } else if (szEigeneAuswahl.equals("stein") && szComputerAuswahl.equals("papier")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
-            scoreRn = 0;
-            aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl.equals("stein") && computerAuswahl.equals("stein")) {
+            nScoreRn = 0;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+        } else if (szEigeneAuswahl.equals("stein") && szComputerAuswahl.equals("stein")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
-            aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl.equals("stein") && computerAuswahl.equals("schere")) {
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+        } else if (szEigeneAuswahl.equals("stein") && szComputerAuswahl.equals("schere")) {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
-            scoreRn += 1;
-            aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl.equals("papier") && computerAuswahl.equals("papier")) {
+            nScoreRn += 1;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+        } else if (szEigeneAuswahl.equals("papier") && szComputerAuswahl.equals("papier")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
-            aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl.equals("papier") && computerAuswahl.equals("stein")) {
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+        } else if (szEigeneAuswahl.equals("papier") && szComputerAuswahl.equals("stein")) {
             gewinner.setText("Gewonnen");
             gewinner.setTextFill(Color.GREEN);
-            scoreRn += 1;
-            aktuellerScore.setText(String.valueOf(scoreRn));
-        } else if (eigeneAuswahl.equals("papier") && computerAuswahl.equals("schere")) {
+            nScoreRn += 1;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+        } else if (szEigeneAuswahl.equals("papier") && szComputerAuswahl.equals("schere")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
-            scoreRn = 0;
-            aktuellerScore.setText(String.valueOf(scoreRn));
+            nScoreRn = 0;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
         }
 
 newGame.setVisible(true);
@@ -213,9 +215,9 @@ newGame.setVisible(true);
     @FXML
     protected void setNewGame() { //Alles wird zurückgesetzt
         newGame.setVisible(false);
-        eigeneAuswahl = "";
-        computerAuswahl = "";
-        comuterAuswahlGenerator = 0;
+        szEigeneAuswahl = "";
+        szComputerAuswahl = "";
+        nComuterAuswahlGenerator = 0;
         computeraus.setVisible(true);
         spieleraus.setVisible(true);
         papier.setVisible(true);
@@ -237,17 +239,17 @@ newGame.setVisible(true);
         papier.setVisible(false);
         schere.setVisible(false);
         stein.setVisible(false);
-        if ("schere".equals(eigeneAuswahl)) {
+        if ("schere".equals(szEigeneAuswahl)) {
             eigeneSchere.setVisible(true);
-        } else if ("stein".equals(eigeneAuswahl)) {
+        } else if ("stein".equals(szEigeneAuswahl)) {
             eigenerStein.setVisible(true);
         } else {
             eigenesPapier.setVisible(true);
         }
 
-        if ("schere".equals(computerAuswahl)) {
+        if ("schere".equals(szComputerAuswahl)) {
             pcSchere.setVisible(true);
-        } else if ("stein".equals(computerAuswahl)) {
+        } else if ("stein".equals(szComputerAuswahl)) {
             pcStein.setVisible(true);
         } else {
             pcPapier.setVisible(true);
@@ -330,8 +332,8 @@ newGame.setVisible(true);
     //Wenn man mehr Punkte als der Highscore hat, wird dieser zur aktuellen Punktezahl
     private void setHighScore() {
         int score = Integer.parseInt(highScore.getText());
-        if (scoreRn > score) {
-            highScore.setText(String.valueOf(scoreRn));
+        if (nScoreRn > score) {
+            highScore.setText(String.valueOf(nScoreRn));
         }
     }
 
