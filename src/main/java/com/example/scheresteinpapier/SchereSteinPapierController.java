@@ -100,7 +100,7 @@ public class SchereSteinPapierController {
 
 
     public void loadProgressbar() {
-    public void loadProgressbar() { //Funktion zum Laden der Progressbar in 1 Sekunde
+    //Funktion zum Laden der Progressbar in 1 Sekunde
         progressBar.setVisible(true);
         progressBar.setProgress(0);
         Timeline timeline = new Timeline();
