@@ -46,6 +46,8 @@ import java.io.IOException;
 
 import java.io.File;
 import java.util.Random;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class SchereSteinPapierController {
 
@@ -112,6 +114,7 @@ public class SchereSteinPapierController {
         // Set the progress value to -1.0
         progressIndicatorPlayer.setProgress(-1.0);
         progressIndicatorPC.setProgress(-1.0);
+        setLabelValueFromFile("HighscoreTable.txt");
     }
 
     private void rmvImageChoose(){
@@ -452,6 +455,18 @@ public class SchereSteinPapierController {
     private void exportLabelValue() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("HighscoreTable.txt"))) {
             writer.write(highScore.getText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void setLabelValueFromFile(String filePath) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            StringBuilder content = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+            highScore.setText(content.toString().trim());
         } catch (IOException e) {
             e.printStackTrace();
         }
