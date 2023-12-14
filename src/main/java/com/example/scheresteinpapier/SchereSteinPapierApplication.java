@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class SchereSteienPapierApplication extends Application {
+public class SchereSteinPapierApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SchereSteinPapierApplication.class.getResource("SchereSteinPapier-view.fxml"));
