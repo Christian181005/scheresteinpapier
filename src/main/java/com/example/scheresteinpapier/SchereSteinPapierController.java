@@ -440,7 +440,6 @@ public class SchereSteinPapierController {
     private void exportLabelValue() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("HighscoreTable.txt"))) {
             writer.write(highScore.getText());
-            System.out.println("Label value exported to label_value.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
