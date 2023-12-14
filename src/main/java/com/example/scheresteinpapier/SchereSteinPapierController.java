@@ -40,8 +40,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import javafx.scene.control.ProgressIndicator;
-import javafx.concurrent.Task;
-import javafx.fxml.FXML;
 
 import java.io.File;
 import java.util.Random;
@@ -73,11 +71,6 @@ public class SchereSteinPapierController {
 
     @FXML
     public Button newGame;
-
-    @FXML
-    public ImageView computeraus;
-    @FXML
-    public ImageView spieleraus;
     @FXML
     public ProgressBar progressBar;
     @FXML
@@ -96,12 +89,6 @@ public class SchereSteinPapierController {
     private int nScoreRn = 0;
 
     Random random = new Random();
-
-
-    String path = "src/main/resources/winsound.mp3";
-    File file = new File(path);
-    javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
-    javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(media);
 
     public void initialize() {
         // Set the progress value to -1.0
@@ -147,7 +134,6 @@ public class SchereSteinPapierController {
     protected void onSchereClicked() {
         szEigeneAuswahl = "schere";
         loadProgressbar();
-        mediaPlayer.play();
 
 
     }
@@ -230,8 +216,6 @@ public class SchereSteinPapierController {
         szEigeneAuswahl = "";
         szComputerAuswahl = "";
         nComuterAuswahlGenerator = 0;
-        computeraus.setVisible(true);
-        spieleraus.setVisible(true);
         papier.setVisible(true);
         schere.setVisible(true);
         stein.setVisible(true);
@@ -246,8 +230,6 @@ public class SchereSteinPapierController {
     }
 
     protected void setImages() { //Zeigt statt dem Ladesymbol das gewählte Symbol aus
-        computeraus.setVisible(false);
-        spieleraus.setVisible(false);
         papier.setVisible(false);
         schere.setVisible(false);
         stein.setVisible(false);
@@ -267,12 +249,6 @@ public class SchereSteinPapierController {
             pcPapier.setVisible(true);
         }
     }
-
-    public void gridcolor() {
-
-    }
-
-
     /*Folgende 10 Methoden sorgen dafür dass wenn man über ein Symbol mit der Maus fährt,
     dass diese größer werden und wieder kleiner wenn, man sie verlässt*/
     @FXML
@@ -287,12 +263,12 @@ public class SchereSteinPapierController {
 
     @FXML
     public void zoomStein() {
-        zoomStein(stein);
+        zoomImage(stein);
     }
 
     @FXML
     public void zoomOutStein() {
-        resetSteinSize(stein);
+        resetImageSize(stein);
     }
 
     @FXML
@@ -306,8 +282,8 @@ public class SchereSteinPapierController {
     }
 
     private void zoomImage(ImageView imageView) {
-        double originHeight = schere.getFitHeight();
-        double originWidth = schere.getFitWidth();
+        double originHeight = imageView.getFitHeight();
+        double originWidth = imageView.getFitWidth();
         double aktuelleBreite = originWidth * 1.1;
         double aktuelleHoehe = originHeight * 1.1;
         imageView.setFitWidth(aktuelleBreite);
@@ -315,26 +291,8 @@ public class SchereSteinPapierController {
     }
 
     private void resetImageSize(ImageView imageView) {
-        double originHeight = schere.getFitHeight();
-        double originWidth = schere.getFitWidth();
-        double aktuelleBreite = originWidth * (1 / 1.1);
-        double aktuelleHoehe = originHeight * (1 / 1.1);
-        imageView.setFitWidth(aktuelleBreite);
-        imageView.setFitHeight(aktuelleHoehe);
-    }
-
-    private void zoomStein(ImageView imageView) {
-        double originHeight = stein.getFitHeight();
-        double originWidth = stein.getFitWidth();
-        double aktuelleBreite = originWidth * 1.1;
-        double aktuelleHoehe = originHeight * 1.1;
-        imageView.setFitWidth(aktuelleBreite);
-        imageView.setFitHeight(aktuelleHoehe);
-    }
-
-    private void resetSteinSize(ImageView imageView) {
-        double originHeight = stein.getFitHeight();
-        double originWidth = stein.getFitWidth();
+        double originHeight = imageView.getFitHeight();
+        double originWidth = imageView.getFitWidth();
         double aktuelleBreite = originWidth * (1 / 1.1);
         double aktuelleHoehe = originHeight * (1 / 1.1);
         imageView.setFitWidth(aktuelleBreite);
