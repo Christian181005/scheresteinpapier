@@ -438,7 +438,7 @@ public class SchereSteinPapierController {
         double aktuelleHoehe = originHeight * (1 / 1.1);
         imageView.setFitWidth(aktuelleBreite);
         imageView.setFitHeight(aktuelleHoehe);
-    }
+    }sefn
 
     //Wenn man mehr Punkte als der Highscore hat, wird dieser zur aktuellen Punktezahl
     private void setHighScore() {
