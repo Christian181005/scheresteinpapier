@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="849.0" maxWidth="900.0" minHeight="550.0" minWidth="899.0" prefHeight="734.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.SchereSteinPapierController">
+<GridPane maxHeight="849.0" maxWidth="900.0" minHeight="550.0" minWidth="899.0" prefHeight="734.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scheresteinpapier.SchereSteinPapierController">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" />
@@ -24,16 +24,6 @@
         <RowConstraints maxHeight="384.79997558593755" minHeight="150.0" prefHeight="268.59998779296876" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <ImageView fx:id="computeraus" fitHeight="150.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-            <image>
-                <Image url="@../../../loading.jpg" />
-            </image>
-        </ImageView>
-        <ImageView fx:id="spieleraus" fitHeight="150.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-            <image>
-                <Image url="@../../../loading.jpg" />
-            </image>
-        </ImageView>
         <ImageView fx:id="schere" fitHeight="150.0" fitWidth="185.0" onMouseClicked="#onSchereClicked" onMouseEntered="#zoomSchere" onMouseExited="#zoomOutSchere" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
             <image>
                 <Image url="@../../../schere.png" />
@@ -125,5 +115,7 @@
                 <Image url="@../../../Brunnen.png" />
             </image>
         </ImageView>
+      <ProgressIndicator fx:id="progressIndicatorPC" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="300.0" progress="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      <ProgressIndicator fx:id="progressIndicatorPlayer" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="300.0" progress="0.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
     </children>
 </GridPane>

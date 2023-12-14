@@ -39,11 +39,15 @@ import javafx.scene.paint.Color;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import javafx.scene.control.ProgressIndicator;
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
 
 import java.io.File;
 import java.util.Random;
 
 public class SchereSteinPapierController {
+
     @FXML
     public Label gewinner;
     @FXML
@@ -82,7 +86,10 @@ public class SchereSteinPapierController {
     public Label highScore;
     @FXML
     public Label aktuellerScore;
-
+    @FXML
+    private ProgressIndicator progressIndicatorPlayer;
+    @FXML
+    private ProgressIndicator progressIndicatorPC;
     private String szEigeneAuswahl = "";
     private String szComputerAuswahl = "";
     private int nComuterAuswahlGenerator = 0;
@@ -105,10 +112,15 @@ public class SchereSteinPapierController {
     javafx.scene.media.Media media2 = new javafx.scene.media.Media(file2.toURI().toString());
     javafx.scene.media.MediaPlayer mediaPlayer2 = new javafx.scene.media.MediaPlayer(media2);
 
+    public void initialize() {
+        // Set the progress value to -1.0
+        progressIndicatorPlayer.setProgress(-1.0);
+        progressIndicatorPC.setProgress(-1.0);
+    }
 
 
     public void loadProgressbar() {
-    //Funktion zum Laden der Progressbar in 1 Sekunde
+        //Funktion zum Laden der Progressbar in 1 Sekunde
         progressBar.setVisible(true);
         progressBar.setProgress(0);
         Timeline timeline = new Timeline();
@@ -222,7 +234,7 @@ public class SchereSteinPapierController {
             onlose();
         }
 
-newGame.setVisible(true);
+        newGame.setVisible(true);
 
     }
 
@@ -282,7 +294,7 @@ newGame.setVisible(true);
         }
     }
 
-  public void gridcolor() {
+    public void gridcolor() {
 
     }
 
@@ -362,5 +374,4 @@ newGame.setVisible(true);
             highScore.setText(String.valueOf(nScoreRn));
         }
     }
-
 }
