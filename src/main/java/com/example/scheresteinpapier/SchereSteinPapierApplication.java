@@ -42,7 +42,7 @@ public class SchereSteinPapierApplication extends Application {
         mediaPlayerbg.setVolume(0.15);
         mediaPlayerbg.play();
     }
-//test
+
     public static void main(String[] args) {
         launch();
     }

@@ -170,6 +170,8 @@ public class SchereSteinPapierController {
         szEigeneAuswahl = "well";
         disableImages();
         loadProgressbar();
+        eigenerBrunnen.setVisible(true);
+        progressIndicatorPlayer.setVisible(false);
     }
 
     @FXML
