@@ -254,8 +254,8 @@ public class SchereSteinPapierController {
         szEigeneAuswahl = "";
         szComputerAuswahl = "";
         nComuterAuswahlGenerator = 0;
-        computeraus.setVisible(true);
-        spieleraus.setVisible(true);
+      //  computeraus.setVisible(true);
+      //  spieleraus.setVisible(true);
         papier.setVisible(true);
         schere.setVisible(true);
         stein.setVisible(true);
@@ -272,8 +272,8 @@ public class SchereSteinPapierController {
     }
 
     protected void setImages() { //Zeigt statt dem Ladesymbol das gewählte Symbol aus
-        computeraus.setVisible(false);
-        spieleraus.setVisible(false);
+     //   computeraus.setVisible(false);
+     //   spieleraus.setVisible(false);
         papier.setVisible(false);
         schere.setVisible(false);
         stein.setVisible(false);
