@@ -40,8 +40,9 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import javafx.scene.control.ProgressIndicator;
-import javafx.concurrent.Task;
-import javafx.fxml.FXML;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import java.io.File;
 import java.util.Random;
@@ -432,6 +433,16 @@ public class SchereSteinPapierController {
         int score = Integer.parseInt(highScore.getText());
         if (nScoreRn > score) {
             highScore.setText(String.valueOf(nScoreRn));
+        }
+    }
+
+    @FXML
+    private void exportLabelValue() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("HighscoreTable.txt"))) {
+            writer.write(highScore.getText());
+            System.out.println("Label value exported to label_value.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

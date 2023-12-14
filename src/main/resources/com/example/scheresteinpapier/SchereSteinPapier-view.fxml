@@ -128,5 +128,6 @@
             <Image url="@../../../Brunnen.png" />
          </image>
       </ImageView>
+      <Button mnemonicParsing="false" onAction="#exportLabelValue" prefHeight="47.0" prefWidth="134.0" text="Highscore Speichern" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
     </children>
 </GridPane>
