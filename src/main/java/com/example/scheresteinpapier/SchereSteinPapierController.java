@@ -40,6 +40,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import javafx.scene.control.ProgressIndicator;
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
 
 import java.io.File;
 import java.util.Random;
@@ -71,6 +73,11 @@ public class SchereSteinPapierController {
 
     @FXML
     public Button newGame;
+
+    @FXML
+    public ImageView computeraus;
+    @FXML
+    public ImageView spieleraus;
     @FXML
     public ProgressBar progressBar;
     @FXML
@@ -89,6 +96,21 @@ public class SchereSteinPapierController {
     private int nScoreRn = 0;
 
     Random random = new Random();
+
+
+
+
+    String path1 = "src/main/resources/winsound.mp3";
+    File file1 = new File(path1);
+    javafx.scene.media.Media media1 = new javafx.scene.media.Media(file1.toURI().toString());
+    javafx.scene.media.MediaPlayer mediaPlayer1 = new javafx.scene.media.MediaPlayer(media1);
+
+
+
+    String path2 = "src/main/resources/losesound.mp3";
+    File file2 = new File(path2);
+    javafx.scene.media.Media media2 = new javafx.scene.media.Media(file2.toURI().toString());
+    javafx.scene.media.MediaPlayer mediaPlayer2 = new javafx.scene.media.MediaPlayer(media2);
 
     public void initialize() {
         // Set the progress value to -1.0
@@ -167,11 +189,13 @@ public class SchereSteinPapierController {
             gewinner.setTextFill(Color.GREEN);
             nScoreRn += 1;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onwin();
         } else if (szEigeneAuswahl.equals("schere") && szComputerAuswahl.equals("stein")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
             nScoreRn = 0;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onlose();
         } else if (szEigeneAuswahl.equals("schere") && szComputerAuswahl.equals("schere")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
@@ -181,6 +205,7 @@ public class SchereSteinPapierController {
             gewinner.setTextFill(Color.RED);
             nScoreRn = 0;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onlose();
         } else if (szEigeneAuswahl.equals("stein") && szComputerAuswahl.equals("stein")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
@@ -190,6 +215,7 @@ public class SchereSteinPapierController {
             gewinner.setTextFill(Color.GREEN);
             nScoreRn += 1;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onwin();
         } else if (szEigeneAuswahl.equals("papier") && szComputerAuswahl.equals("papier")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
@@ -199,16 +225,28 @@ public class SchereSteinPapierController {
             gewinner.setTextFill(Color.GREEN);
             nScoreRn += 1;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onwin();
         } else if (szEigeneAuswahl.equals("papier") && szComputerAuswahl.equals("schere")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
             nScoreRn = 0;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onlose();
         }
 
         newGame.setVisible(true);
 
     }
+
+    void onwin() {
+        mediaPlayer1.setVolume(1.00);
+        mediaPlayer1.play();
+    }
+    void onlose() {
+        mediaPlayer2.setVolume(1.00);
+        mediaPlayer2.play();
+    }
+
 
     @FXML
     protected void setNewGame() { //Alles wird zurückgesetzt
@@ -216,6 +254,8 @@ public class SchereSteinPapierController {
         szEigeneAuswahl = "";
         szComputerAuswahl = "";
         nComuterAuswahlGenerator = 0;
+      //  computeraus.setVisible(true);
+      //  spieleraus.setVisible(true);
         papier.setVisible(true);
         schere.setVisible(true);
         stein.setVisible(true);
@@ -227,9 +267,13 @@ public class SchereSteinPapierController {
         eigenesPapier.setVisible(false);
         gewinner.setText("/");
         gewinner.setTextFill(Color.BLACK);
+        mediaPlayer1.stop();
+        mediaPlayer2.stop();
     }
 
     protected void setImages() { //Zeigt statt dem Ladesymbol das gewählte Symbol aus
+     //   computeraus.setVisible(false);
+     //   spieleraus.setVisible(false);
         papier.setVisible(false);
         schere.setVisible(false);
         stein.setVisible(false);
@@ -249,6 +293,12 @@ public class SchereSteinPapierController {
             pcPapier.setVisible(true);
         }
     }
+
+    public void gridcolor() {
+
+    }
+
+
     /*Folgende 10 Methoden sorgen dafür dass wenn man über ein Symbol mit der Maus fährt,
     dass diese größer werden und wieder kleiner wenn, man sie verlässt*/
     @FXML
@@ -263,12 +313,12 @@ public class SchereSteinPapierController {
 
     @FXML
     public void zoomStein() {
-        zoomImage(stein);
+        zoomStein(stein);
     }
 
     @FXML
     public void zoomOutStein() {
-        resetImageSize(stein);
+        resetSteinSize(stein);
     }
 
     @FXML
@@ -282,8 +332,8 @@ public class SchereSteinPapierController {
     }
 
     private void zoomImage(ImageView imageView) {
-        double originHeight = imageView.getFitHeight();
-        double originWidth = imageView.getFitWidth();
+        double originHeight = schere.getFitHeight();
+        double originWidth = schere.getFitWidth();
         double aktuelleBreite = originWidth * 1.1;
         double aktuelleHoehe = originHeight * 1.1;
         imageView.setFitWidth(aktuelleBreite);
@@ -291,8 +341,26 @@ public class SchereSteinPapierController {
     }
 
     private void resetImageSize(ImageView imageView) {
-        double originHeight = imageView.getFitHeight();
-        double originWidth = imageView.getFitWidth();
+        double originHeight = schere.getFitHeight();
+        double originWidth = schere.getFitWidth();
+        double aktuelleBreite = originWidth * (1 / 1.1);
+        double aktuelleHoehe = originHeight * (1 / 1.1);
+        imageView.setFitWidth(aktuelleBreite);
+        imageView.setFitHeight(aktuelleHoehe);
+    }
+
+    private void zoomStein(ImageView imageView) {
+        double originHeight = stein.getFitHeight();
+        double originWidth = stein.getFitWidth();
+        double aktuelleBreite = originWidth * 1.1;
+        double aktuelleHoehe = originHeight * 1.1;
+        imageView.setFitWidth(aktuelleBreite);
+        imageView.setFitHeight(aktuelleHoehe);
+    }
+
+    private void resetSteinSize(ImageView imageView) {
+        double originHeight = stein.getFitHeight();
+        double originWidth = stein.getFitWidth();
         double aktuelleBreite = originWidth * (1 / 1.1);
         double aktuelleHoehe = originHeight * (1 / 1.1);
         imageView.setFitWidth(aktuelleBreite);

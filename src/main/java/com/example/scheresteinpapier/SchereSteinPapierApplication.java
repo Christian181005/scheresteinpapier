@@ -39,7 +39,7 @@ public class SchereSteinPapierApplication extends Application {
         javafx.scene.media.MediaPlayer mediaPlayerbg = new javafx.scene.media.MediaPlayer(media);
         mediaPlayerbg.setAutoPlay(true);
         mediaPlayerbg.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
-        mediaPlayerbg.setVolume(0.30);
+        mediaPlayerbg.setVolume(0.15);
         mediaPlayerbg.play();
     }
 
