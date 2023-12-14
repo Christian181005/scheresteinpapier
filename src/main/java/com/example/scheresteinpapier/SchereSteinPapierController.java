@@ -120,6 +120,9 @@ public class SchereSteinPapierController {
 
 
     public void loadProgressbar() {
+        papier.setVisible(false);
+        schere.setVisible(false);
+        stein.setVisible(false);
         //Funktion zum Laden der Progressbar in 1 Sekunde
         progressBar.setVisible(true);
         progressBar.setProgress(0);
@@ -156,20 +159,25 @@ public class SchereSteinPapierController {
     protected void onSchereClicked() {
         szEigeneAuswahl = "schere";
         loadProgressbar();
-
-
+        eigeneSchere.setVisible(true);
+        progressIndicatorPlayer.setVisible(false);
     }
 
     @FXML
     protected void onSteinClicked() {
         szEigeneAuswahl = "stein";
         loadProgressbar();
+        eigenerStein.setVisible(true);
+        progressIndicatorPlayer.setVisible(false);
     }
+
 
     @FXML
     protected void onPapierClicked() {
         szEigeneAuswahl = "papier";
         loadProgressbar();
+        eigenesPapier.setVisible(true);
+        progressIndicatorPlayer.setVisible(false);
     }
 
     protected void setComuterAuswahlGenerator() { //Zufallszahl zwischen 1 und 3 wird generiert
@@ -234,6 +242,8 @@ public class SchereSteinPapierController {
             onlose();
         }
 
+        progressIndicatorPC.setVisible(false);
+        progressIndicatorPlayer.setVisible(false);
         newGame.setVisible(true);
 
     }
@@ -243,7 +253,7 @@ public class SchereSteinPapierController {
         mediaPlayer1.play();
     }
     void onlose() {
-        mediaPlayer2.setVolume(1.00);
+        mediaPlayer2.setVolume(0.40);
         mediaPlayer2.play();
     }
 
@@ -254,8 +264,8 @@ public class SchereSteinPapierController {
         szEigeneAuswahl = "";
         szComputerAuswahl = "";
         nComuterAuswahlGenerator = 0;
-      //  computeraus.setVisible(true);
-      //  spieleraus.setVisible(true);
+        progressIndicatorPC.setVisible(true);
+        progressIndicatorPlayer.setVisible(true);
         papier.setVisible(true);
         schere.setVisible(true);
         stein.setVisible(true);
