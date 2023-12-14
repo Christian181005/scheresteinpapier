@@ -63,21 +63,19 @@ public class SchereSteinPapierController {
     public ImageView eigenerStein;
     @FXML
     public ImageView eigenesPapier;
-
+    @FXML
+    public ImageView brunnen;
     @FXML
     public ImageView pcSchere;
     @FXML
     public ImageView pcStein;
     @FXML
     public ImageView pcPapier;
-
+    @FXML
+    public ImageView pcBrunnen;
+    @FXML ImageView eigenerBrunnen;
     @FXML
     public Button newGame;
-
-    @FXML
-    public ImageView computeraus;
-    @FXML
-    public ImageView spieleraus;
     @FXML
     public ProgressBar progressBar;
     @FXML
@@ -98,13 +96,10 @@ public class SchereSteinPapierController {
     Random random = new Random();
 
 
-
-
     String path1 = "src/main/resources/winsound.mp3";
     File file1 = new File(path1);
     javafx.scene.media.Media media1 = new javafx.scene.media.Media(file1.toURI().toString());
     javafx.scene.media.MediaPlayer mediaPlayer1 = new javafx.scene.media.MediaPlayer(media1);
-
 
 
     String path2 = "src/main/resources/losesound.mp3";
@@ -118,7 +113,12 @@ public class SchereSteinPapierController {
         progressIndicatorPC.setProgress(-1.0);
     }
 
-
+    private void rmvImageChoose(){
+        papier.setVisible(false);
+        schere.setVisible(false);
+        stein.setVisible(false);
+        brunnen.setVisible(false);
+    }
     public void loadProgressbar() {
         //Funktion zum Laden der Progressbar in 1 Sekunde
         progressBar.setVisible(true);
@@ -148,38 +148,56 @@ public class SchereSteinPapierController {
             selectWinner();
             setImages();
             setHighScore();
+            progressIndicatorPC.setVisible(false);
+            progressIndicatorPlayer.setVisible(false);
         });
 
+    }
+    private void disableImages(){
+        brunnen.setDisable(true);
+        stein.setDisable(true);
+        schere.setDisable(true);
+        papier.setDisable(true);
+    }
+
+    @FXML
+    protected void onWelllicked() {
+        szEigeneAuswahl = "well";
+        disableImages();
+        loadProgressbar();
     }
 
     @FXML
     protected void onSchereClicked() {
         szEigeneAuswahl = "schere";
+        disableImages();
         loadProgressbar();
-
-
     }
 
     @FXML
     protected void onSteinClicked() {
         szEigeneAuswahl = "stein";
+        disableImages();
         loadProgressbar();
     }
 
     @FXML
     protected void onPapierClicked() {
         szEigeneAuswahl = "papier";
+        disableImages();
         loadProgressbar();
     }
 
     protected void setComuterAuswahlGenerator() { //Zufallszahl zwischen 1 und 3 wird generiert
-        nComuterAuswahlGenerator = random.nextInt(3) + 1;
+        nComuterAuswahlGenerator = random.nextInt(4) + 1;
         if (nComuterAuswahlGenerator == 1) {
             szComputerAuswahl = "schere";
         } else if (nComuterAuswahlGenerator == 2) {
             szComputerAuswahl = "stein";
-        } else {
+        } else if (nComuterAuswahlGenerator == 3) {
             szComputerAuswahl = "papier";
+        } else {
+            szComputerAuswahl = "well";
         }
     }
 
@@ -232,6 +250,46 @@ public class SchereSteinPapierController {
             nScoreRn = 0;
             aktuellerScore.setText(String.valueOf(nScoreRn));
             onlose();
+        } else if (szEigeneAuswahl.equals("well") && szComputerAuswahl.equals("well")) {
+            gewinner.setText("Unentschieden");
+            gewinner.setTextFill(Color.GRAY);
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+        } else if (szEigeneAuswahl.equals("well") && szComputerAuswahl.equals("stein")) {
+            gewinner.setText("Gewonnen");
+            gewinner.setTextFill(Color.GREEN);
+            nScoreRn += 1;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+            onwin();
+        } else if (szEigeneAuswahl.equals("well") && szComputerAuswahl.equals("papier")) {
+            gewinner.setText("Verloren");
+            gewinner.setTextFill(Color.RED);
+            nScoreRn = 0;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+            onlose();
+        } else if (szEigeneAuswahl.equals("well") && szComputerAuswahl.equals("schere")){
+            gewinner.setText("Gewonnen");
+            gewinner.setTextFill(Color.GREEN);
+            nScoreRn += 1;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+            onwin();
+        } else if (szComputerAuswahl.equals("well") && szEigeneAuswahl.equals("stein")) {
+            gewinner.setText("Verloren");
+            gewinner.setTextFill(Color.RED);
+            nScoreRn = 0;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+            onlose();
+        } else if (szComputerAuswahl.equals("well") && szEigeneAuswahl.equals("papier")){
+            gewinner.setText("Gewonnen");
+            gewinner.setTextFill(Color.GREEN);
+            nScoreRn += 1;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+            onwin();
+        } else if (szComputerAuswahl.equals("well") && szEigeneAuswahl.equals("schere")) {
+            gewinner.setText("Verloren");
+            gewinner.setTextFill(Color.RED);
+            nScoreRn = 0;
+            aktuellerScore.setText(String.valueOf(nScoreRn));
+            onlose();
         }
 
         newGame.setVisible(true);
@@ -242,6 +300,7 @@ public class SchereSteinPapierController {
         mediaPlayer1.setVolume(1.00);
         mediaPlayer1.play();
     }
+
     void onlose() {
         mediaPlayer2.setVolume(1.00);
         mediaPlayer2.play();
@@ -254,8 +313,8 @@ public class SchereSteinPapierController {
         szEigeneAuswahl = "";
         szComputerAuswahl = "";
         nComuterAuswahlGenerator = 0;
-      //  computeraus.setVisible(true);
-      //  spieleraus.setVisible(true);
+        //  computeraus.setVisible(true);
+        //  spieleraus.setVisible(true);
         papier.setVisible(true);
         schere.setVisible(true);
         stein.setVisible(true);
@@ -269,28 +328,37 @@ public class SchereSteinPapierController {
         gewinner.setTextFill(Color.BLACK);
         mediaPlayer1.stop();
         mediaPlayer2.stop();
+        progressIndicatorPC.setVisible(true);
+        progressIndicatorPlayer.setVisible(true);
+        eigenerBrunnen.setVisible(false);
+        pcBrunnen.setVisible(false);
+        brunnen.setVisible(true);
+        brunnen.setDisable(false);
+        stein.setDisable(false);
+        schere.setDisable(false);
+        papier.setDisable(false);
     }
 
     protected void setImages() { //Zeigt statt dem Ladesymbol das gewählte Symbol aus
-     //   computeraus.setVisible(false);
-     //   spieleraus.setVisible(false);
-        papier.setVisible(false);
-        schere.setVisible(false);
-        stein.setVisible(false);
+        rmvImageChoose();
         if ("schere".equals(szEigeneAuswahl)) {
             eigeneSchere.setVisible(true);
         } else if ("stein".equals(szEigeneAuswahl)) {
             eigenerStein.setVisible(true);
-        } else {
+        } else  if ("papier".equals(szEigeneAuswahl)){
             eigenesPapier.setVisible(true);
+        } else {
+            eigenerBrunnen.setVisible(true);
         }
 
         if ("schere".equals(szComputerAuswahl)) {
             pcSchere.setVisible(true);
         } else if ("stein".equals(szComputerAuswahl)) {
             pcStein.setVisible(true);
-        } else {
+        } else if ("papier".equals(szComputerAuswahl)){
             pcPapier.setVisible(true);
+        } else {
+            pcBrunnen.setVisible(true);
         }
     }
 
@@ -301,6 +369,16 @@ public class SchereSteinPapierController {
 
     /*Folgende 10 Methoden sorgen dafür dass wenn man über ein Symbol mit der Maus fährt,
     dass diese größer werden und wieder kleiner wenn, man sie verlässt*/
+    @FXML
+    public void zoomWell() {
+        zoomImage(brunnen);
+    }
+
+    @FXML
+    public void zoomOutWell() {
+        resetImageSize(brunnen);
+    }
+
     @FXML
     public void zoomSchere() {
         zoomImage(schere);
@@ -313,12 +391,12 @@ public class SchereSteinPapierController {
 
     @FXML
     public void zoomStein() {
-        zoomStein(stein);
+        zoomImage(stein);
     }
 
     @FXML
     public void zoomOutStein() {
-        resetSteinSize(stein);
+        resetImageSize(stein);
     }
 
     @FXML
@@ -332,8 +410,8 @@ public class SchereSteinPapierController {
     }
 
     private void zoomImage(ImageView imageView) {
-        double originHeight = schere.getFitHeight();
-        double originWidth = schere.getFitWidth();
+        double originHeight = imageView.getFitHeight();
+        double originWidth = imageView.getFitWidth();
         double aktuelleBreite = originWidth * 1.1;
         double aktuelleHoehe = originHeight * 1.1;
         imageView.setFitWidth(aktuelleBreite);
@@ -341,26 +419,8 @@ public class SchereSteinPapierController {
     }
 
     private void resetImageSize(ImageView imageView) {
-        double originHeight = schere.getFitHeight();
-        double originWidth = schere.getFitWidth();
-        double aktuelleBreite = originWidth * (1 / 1.1);
-        double aktuelleHoehe = originHeight * (1 / 1.1);
-        imageView.setFitWidth(aktuelleBreite);
-        imageView.setFitHeight(aktuelleHoehe);
-    }
-
-    private void zoomStein(ImageView imageView) {
-        double originHeight = stein.getFitHeight();
-        double originWidth = stein.getFitWidth();
-        double aktuelleBreite = originWidth * 1.1;
-        double aktuelleHoehe = originHeight * 1.1;
-        imageView.setFitWidth(aktuelleBreite);
-        imageView.setFitHeight(aktuelleHoehe);
-    }
-
-    private void resetSteinSize(ImageView imageView) {
-        double originHeight = stein.getFitHeight();
-        double originWidth = stein.getFitWidth();
+        double originHeight = imageView.getFitHeight();
+        double originWidth = imageView.getFitWidth();
         double aktuelleBreite = originWidth * (1 / 1.1);
         double aktuelleHoehe = originHeight * (1 / 1.1);
         imageView.setFitWidth(aktuelleBreite);
