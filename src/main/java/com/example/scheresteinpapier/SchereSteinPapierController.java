@@ -93,10 +93,17 @@ public class SchereSteinPapierController {
 
 
 
-    String path = "src/main/resources/winsound.mp3";
-    File file = new File(path);
-    javafx.scene.media.Media media = new javafx.scene.media.Media(file.toURI().toString());
-    javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(media);
+    String path1 = "src/main/resources/winsound.mp3";
+    File file1 = new File(path1);
+    javafx.scene.media.Media media1 = new javafx.scene.media.Media(file1.toURI().toString());
+    javafx.scene.media.MediaPlayer mediaPlayer1 = new javafx.scene.media.MediaPlayer(media1);
+
+
+
+    String path2 = "src/main/resources/losesound.mp3";
+    File file2 = new File(path2);
+    javafx.scene.media.Media media2 = new javafx.scene.media.Media(file2.toURI().toString());
+    javafx.scene.media.MediaPlayer mediaPlayer2 = new javafx.scene.media.MediaPlayer(media2);
 
 
 
@@ -137,7 +144,6 @@ public class SchereSteinPapierController {
     protected void onSchereClicked() {
         szEigeneAuswahl = "schere";
         loadProgressbar();
-        mediaPlayer.play();
 
 
     }
@@ -171,11 +177,13 @@ public class SchereSteinPapierController {
             gewinner.setTextFill(Color.GREEN);
             nScoreRn += 1;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onwin();
         } else if (szEigeneAuswahl.equals("schere") && szComputerAuswahl.equals("stein")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
             nScoreRn = 0;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onlose();
         } else if (szEigeneAuswahl.equals("schere") && szComputerAuswahl.equals("schere")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
@@ -185,6 +193,7 @@ public class SchereSteinPapierController {
             gewinner.setTextFill(Color.RED);
             nScoreRn = 0;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onlose();
         } else if (szEigeneAuswahl.equals("stein") && szComputerAuswahl.equals("stein")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
@@ -194,6 +203,7 @@ public class SchereSteinPapierController {
             gewinner.setTextFill(Color.GREEN);
             nScoreRn += 1;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onwin();
         } else if (szEigeneAuswahl.equals("papier") && szComputerAuswahl.equals("papier")) {
             gewinner.setText("Unentschieden");
             gewinner.setTextFill(Color.GRAY);
@@ -203,16 +213,28 @@ public class SchereSteinPapierController {
             gewinner.setTextFill(Color.GREEN);
             nScoreRn += 1;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onwin();
         } else if (szEigeneAuswahl.equals("papier") && szComputerAuswahl.equals("schere")) {
             gewinner.setText("Verloren");
             gewinner.setTextFill(Color.RED);
             nScoreRn = 0;
             aktuellerScore.setText(String.valueOf(nScoreRn));
+            onlose();
         }
 
 newGame.setVisible(true);
 
     }
+
+    void onwin() {
+        mediaPlayer1.setVolume(1.00);
+        mediaPlayer1.play();
+    }
+    void onlose() {
+        mediaPlayer2.setVolume(1.00);
+        mediaPlayer2.play();
+    }
+
 
     @FXML
     protected void setNewGame() { //Alles wird zurückgesetzt
@@ -233,6 +255,8 @@ newGame.setVisible(true);
         eigenesPapier.setVisible(false);
         gewinner.setText("/");
         gewinner.setTextFill(Color.BLACK);
+        mediaPlayer1.stop();
+        mediaPlayer2.stop();
     }
 
     protected void setImages() { //Zeigt statt dem Ladesymbol das gewählte Symbol aus

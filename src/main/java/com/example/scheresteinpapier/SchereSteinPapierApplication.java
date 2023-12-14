@@ -27,7 +27,7 @@ public class SchereSteinPapierApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SchereSteinPapierApplication.class.getResource("SchereSteinPapier-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 550);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         stage.setTitle("Schere Stein Papier");
         stage.setScene(scene);
         stage.show();
@@ -39,7 +39,7 @@ public class SchereSteinPapierApplication extends Application {
         javafx.scene.media.MediaPlayer mediaPlayerbg = new javafx.scene.media.MediaPlayer(media);
         mediaPlayerbg.setAutoPlay(true);
         mediaPlayerbg.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
-        mediaPlayerbg.setVolume(0.30);
+        mediaPlayerbg.setVolume(0.15);
         mediaPlayerbg.play();
 
     }
